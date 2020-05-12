@@ -1,11 +1,10 @@
 <template>
   <v-container fluid>
     <v-row class="flex-column" align="center">
-      <v-col cols="6" xl="4" v-for="item in feed" :key="item.id">
-        <v-card >
-          <v-img :src="item.image" height="200px"/>
-          <v-card-text>{{ item.text }}</v-card-text>
-        </v-card>
+      <v-col cols="6" xl="4" v-for="item in sortedFeed" :key="item.id">
+        <list-item :image="item.image"
+                   :text="item.text"
+                   :timestamp="item.datetime"/>
       </v-col>
     </v-row>
   </v-container>
@@ -13,8 +12,12 @@
 
 <script>
 /* eslint-disable max-len */
+import sortListItemsByDatetimeDescending from '@/utils/listitem-datetime-sorter';
+import ListItem from './ListItem.vue';
+
 export default {
   name: 'List.vue',
+  components: { ListItem },
   data() {
     return {
       feed: [
@@ -38,6 +41,11 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    sortedFeed() {
+      return this.feed.slice().sort(sortListItemsByDatetimeDescending);
+    },
   },
 };
 </script>
