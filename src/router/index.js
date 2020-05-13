@@ -10,11 +10,17 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    meta: {
+      pageTitle: 'Home',
+    },
   },
   {
     path: '/feed',
-    name: 'feed',
+    name: 'Feed',
     component: FeedView,
+    meta: {
+      pageTitle: 'Picture Feed',
+    },
   },
 ];
 
