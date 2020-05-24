@@ -7,9 +7,11 @@
         </v-btn>
       </v-col>
       <v-col cols="6" xl="4" v-for="item in sortedFeed" :key="item.id">
-        <list-item :image="item.image"
-                   :text="item.text"
-                   :timestamp="item.datetime"/>
+        <router-link :to="{ name: 'Item', params: { id: item.id } }" class="text-decoration--none">
+          <list-item :image="item.image"
+                     :text="item.text"
+                     :timestamp="item.datetime"/>
+        </router-link>
       </v-col>
     </v-row>
   </v-container>
@@ -34,5 +36,9 @@ export default {
 </script>
 
 <style scoped>
+
+  .text-decoration--none {
+    text-decoration: none;
+  }
 
 </style>

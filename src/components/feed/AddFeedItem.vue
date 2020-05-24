@@ -77,7 +77,7 @@ export default {
           image: this.imageUrl,
           datetime: (new Date()).getTime() / 1000,
         },
-      );
+      ).then(this.$router.push({ name: 'Feed' }));
     },
   },
 };
