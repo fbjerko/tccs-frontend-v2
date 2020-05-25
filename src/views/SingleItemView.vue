@@ -6,7 +6,8 @@
 
 <script>
 import ListItem from '@/components/feed/ListItem.vue';
-import { mapState } from 'vuex';
+import { GET_ITEM_BY_ID } from '@/store/getters/feedGetters';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'SingleItemView',
@@ -15,15 +16,10 @@ export default {
     id: Number,
   },
   computed: {
-    ...mapState({
-      currentItem(state) {
-        const { feed } = state;
-        if (!feed || !Array.isArray(feed)) {
-          return {};
-        }
-        return feed.find((item) => item.id === this.id) || {};
-      },
-    }),
+    ...mapGetters([GET_ITEM_BY_ID]),
+    currentItem() {
+      return this[GET_ITEM_BY_ID](this.id);
+    },
   },
 };
 </script>
