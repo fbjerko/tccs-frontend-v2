@@ -20,7 +20,8 @@
 <script>
 /* eslint-disable max-len */
 import sortListItemsByDatetimeDescending from '@/utils/listitem-datetime-sorter';
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
+import { LOAD_FEED } from '@/store/actions/feedActions';
 import ListItem from './ListItem.vue';
 
 export default {
@@ -31,6 +32,12 @@ export default {
     sortedFeed() {
       return this.feed.slice().sort(sortListItemsByDatetimeDescending);
     },
+  },
+  methods: {
+    ...mapActions([LOAD_FEED]),
+  },
+  mounted() {
+    this[LOAD_FEED]();
   },
 };
 </script>
